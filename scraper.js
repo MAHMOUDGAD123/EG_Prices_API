@@ -377,7 +377,13 @@ const map = [
 // get data
 const get_prices = async (res) => {
   const prices = {};
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ["--disable-setuid-sandbox", "--no-sandbox", "--no-zygote"],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+  });
 
   try {
     for (const [url, data] of map) {
@@ -394,7 +400,7 @@ const get_prices = async (res) => {
     res.json(prices);
     console.error("SUCCESS ✅");
   } catch (e) {
-    console.error("ERROR: ", e.message);
+    console.error("ERROR ❌: ", e.message);
     res.send(null);
   } finally {
     await browser.close();
