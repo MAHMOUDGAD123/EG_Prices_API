@@ -1,0 +1,17 @@
+{
+  "name": "eg_prices_api",
+  "version": "1.0.0",
+  "description": "API to get prices in Egypt",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "MG",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "puppeteer": "^22.6.5"
+  }
+}
